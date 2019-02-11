@@ -1,17 +1,14 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Bank System</title>
-    </head>
-    <body>
-        <main>
-            
-        </main>
-    </body>
-</html>
+<?php
+require('model/database.php');
+require('model/product_db.php');
+require('model/category_db.php');
+
+$action = filter_input(INPUT_POST, 'action');
+if ($action == NULL) {
+    $action = filter_input(INPUT_GET, 'action');
+    if ($action == NULL) {
+        $action = 'list_products';
+    }
+} 
+
+?>
