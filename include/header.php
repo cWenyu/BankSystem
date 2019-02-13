@@ -3,7 +3,7 @@
 <!-- the head section -->
 <head>
     <title>The Bank System</title>
-    <link rel="shortcut icon" href="../images/favicon.ico">
+    <link rel="shortcut icon" href="./images/favicon.ico">
 </head>
 
 <!-- the body section -->
