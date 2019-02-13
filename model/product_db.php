@@ -1,17 +1,31 @@
 <?php
+
 function get_products() {
     global $db;
-    $query = 'SELECT * FROM finacial_products
+    $query = 'SELECT * FROM financial_products
               ORDER BY product_code';
     $statement = $db->prepare($query);
     $statement->execute();
-    return $statement; 
+    $products = $statement->fetchAll();
+    $statement->closeCursor();
+    return $products;
 }
 
+function get_productByCode($productCode) {
+    global $db;
+    $query = 'SELECT * FROM financial_products
+              where product_code = :productCode';
+    $statement = $db->prepare($query);
+    $statement->bindValue(':productCode', $productCode);
+    $statement->execute();
+    $product = $statement->fetch();
+    $statement->closeCursor();
+    return $product;
+}
 
 function delete_product($productCode) {
     global $db;
-    $query = 'DELETE FROM finacial_products
+    $query = 'DELETE FROM financial_products
               WHERE product_code = :productCode';
     $statement = $db->prepare($query);
     $statement->bindValue(':productCode', $productCode);
@@ -21,8 +35,8 @@ function delete_product($productCode) {
 
 function add_product($productName, $productDescription, $productPrice) {
     global $db;
-    $query = 'INSERT INTO finacial_products
-                 (product_name, product_descriptione, product_price)
+    $query = 'INSERT INTO financial_products
+                 (product_name, product_description, product_price)
               VALUES
                  (:productName, :productDescription, :productPrice)';
     $statement = $db->prepare($query);
@@ -33,15 +47,20 @@ function add_product($productName, $productDescription, $productPrice) {
     $statement->closeCursor();
 }
 
-function update_product_description($productCode, $productDescription) {
+function update_product($productCode, $productName, $productDescription, $productPrice) {
     global $db;
-    $query = 'UPDATE finacial_products
-              SET product_description = :productDescription
-               WHERE product_code = :productCode';
+    $query = 'UPDATE financial_products
+              SET product_name = :productName,
+              product_description = :productDescription,
+              product_price = :productPrice
+              WHERE product_code = :productCode';
     $statement = $db->prepare($query);
+    $statement->bindValue(':productName', $productName);
     $statement->bindValue(':productDescription', $productDescription);
+    $statement->bindValue(':productPrice', $productPrice);
     $statement->bindValue(':productCode', $productCode);
     $statement->execute();
     $statement->closeCursor();
 }
+
 ?>
