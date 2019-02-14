@@ -1,38 +1,30 @@
-<?php include '../include/header.php'; ?>
+<?php include './include/header.php'; ?>
 <main>
-    <h1>Add Product</h1>
+    <h2>Add Product</h2>
     <form action="index.php" method="post" id="add_product_form">
         <input type="hidden" name="action" value="add_product">
 
-        <label>Category:</label>
-        <select name="category_id">
-        <?php foreach ( $categories as $category ) : ?>
-            <option value="<?php echo $category['categoryID']; ?>">
-                <?php echo $category['categoryName']; ?>
-            </option>
-        <?php endforeach; ?>
-        </select>
-        <br>
-
-        <label>Code:</label>
-        <input type="input" name="code">
-        <br>
-
+        <!-- next step: regex for each input-->
         <label>Name:</label>
-        <input type="input" name="name">
+        <input type="input" name="productName" placeholder="product name">
         <br>
 
-        <label>List Price:</label>
-        <input type="input" name="price">
+        <label>Description:</label>
+        <input type="input" name="productDescription"  placeholder="product description">
         <br>
 
+        <label>Price:</label>
+        <input type="input" name="productPrice" pattern="^([1-9][0-9]*)+(.[0-9]{1,2})?$" placeholder="product price" required autofocus>
+        <br>
+
+        <hr/>
         <label>&nbsp;</label>
         <input type="submit" value="Add Product">
         <br>
     </form>
-    <p class="last_paragraph">
+    <p>
         <a href="index.php?action=list_products">View Product List</a>
     </p>
 
 </main>
-<?php include '../include/footer.php'; ?>
+<?php include './include/footer.php'; ?>
