@@ -47,7 +47,7 @@ $('document').ready(function()
 			   {						
 					if(response=="ok"){
 									
-						$("#btn-login").html('<img src="./images/btn-ajax-loader.gif" /> &nbsp; Signing In ...');
+						$("#btn-login").html('<img src="../images/btn-ajax-loader.gif" /> &nbsp; Signing In ...');
 						setTimeout(' window.location.href = "home.php"; ',4000);
 					}
 					else{
