@@ -1,54 +1,46 @@
 <?php include './include/header.php'; ?>
 <main>
 
-    <h1>Product List</h1>
-
-    <aside>
-        <!-- display a list of categories -->
-        <h2>Categories</h2>
-        <?php include './include/category_nav.php'; ?>        
-    </aside>
-
+    <h2>Financial Products List</h2>
     <section>
-        <!-- display a table of products -->
-        <h2><?php echo $category_name; ?></h2>
         <table>
             <tr>
-                <th>Code</th>
-                <th>Name</th>
-                <th class="right">Price</th>
+                <th>Product Name</th>
+                <th>Description</th>
+                <th>Price</th>
                 <th>&nbsp;</th>
                 <th>&nbsp;</th>
             </tr>
             <?php foreach ($products as $product) : ?>
-            <tr>
-                <td><?php echo $product['productCode']; ?></td>
-                <td><?php echo $product['productName']; ?></td>
-                <td class="right"><?php echo $product['listPrice']; ?></td>
-                <td><form action="." method="post">
-                    <input type="hidden" name="action"
-                           value="show_edit_form">
-                    <input type="hidden" name="product_id"
-                           value="<?php echo $product['productID']; ?>">
-                    <input type="hidden" name="category_id"
-                           value="<?php echo $product['categoryID']; ?>">
-                    <input type="submit" value="Edit">
-                </form></td>
-                <td><form action="." method="post">
-                    <input type="hidden" name="action"
-                           value="delete_product">
-                    <input type="hidden" name="product_id"
-                           value="<?php echo $product['productID']; ?>">
-                    <input type="hidden" name="category_id"
-                           value="<?php echo $product['categoryID']; ?>">
-                    <input type="submit" value="Delete">
-                </form></td>
-            </tr>
+                <tr>
+                    <td><?php echo $product['product_name']; ?></td>    
+                    <td><?php echo $product['product_description']; ?></td>
+                    <td><?php echo $product['product_price']; ?></td>   
+                    <td>
+                        <form action="." method="post">
+                            <input type="hidden" name="action" value="edit_product">
+                            <input type="hidden" name="productCode" value="<?php echo $product['product_code']; ?>">
+                            <input type="submit" value="Edit">
+                        </form>
+                    </td>
+                    <td>
+                        <form action="." method="post">
+                            <input type="hidden" name="action" value="delete_product">
+                            <input type="hidden" name="productCode" value="<?php echo $product['product_code']; ?>">
+                            <input type="submit" value="Delete">
+                        </form>
+                    </td>
+                </tr>
             <?php endforeach; ?>
         </table>
-        <p><a href="?action=show_add_form">Add Product</a></p>
-        <p><a href="?action=list_categories">List Categories</a></p>
+        <p><a href="?action=list_products">List Products</a></p>
+        <p><a href="?action=add_product_form">Add Product</a></p>
+        <p><a href="view/userLogIn.php">Quick Check Balance</a></p>
+        <p><a href="?action=buy_product_form">Buy Product</a></p>
+        <p><a href="?action=register_new_form">Register</a></p>
+        <p><a href="?action=user_cancellation_form">Account Cancellation</a></p>
     </section>
+</section>
 
 </main>
 <?php include './include/footer.php'; ?>
