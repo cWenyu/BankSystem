@@ -1,7 +1,7 @@
 <?php include './include/header.php'; ?>
 <main>
 
-    <h2>Your Products List</h2>
+    <h2><?php echo$cardHolder ?>'s Product List</h2>
     <section>
         <table>
             <tr>
