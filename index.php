@@ -119,10 +119,9 @@ else if ($action == "register_new_form") {
     } else {
         new_register_user($registerPassword, $cardNumber, $cardHolder, $balance);
 
-//        $newRegisterNumber = register_number($registerPassword, $cardNumber, $cardHolder, $balance);
-//        $message =$newRegisterNumber;
-//                "Your register number is " +  '$newRegisterNumber';
-//        include('include/messages.php');
+        $newRegisterNumber = register_number($registerPassword, $cardNumber, $cardHolder, $balance);
+        $message = "Your register number is " . $newRegisterNumber;
+        include('include/messages.php');
     }
 }
 //user account cancellation
@@ -155,7 +154,6 @@ else if ($action == "buy_product_form") {
     $productName = get_product_name($productCode);
     $quantity = filter_input(INPUT_POST, 'quantity');
     $cost = get_product_price($productCode) * $quantity;
-
     if ($quantity == NULL) {
         $error = "Quantity shold be 1 at least.";
         include('errors/error.php');
