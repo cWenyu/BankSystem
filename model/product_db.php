@@ -63,4 +63,27 @@ function update_product($productCode, $productName, $productDescription, $produc
     $statement->closeCursor();
 }
 
+function get_product_name($productCode) {
+    global $db;
+    $query = 'SELECT product_name FROM financial_products
+              WHERE product_code = :productCode';
+    $statement = $db->prepare($query);
+    $statement->bindValue(':productCode', $productCode);
+    $statement->execute();
+    $productName = $statement->fetch()[0];
+    $statement->closeCursor();
+    return $productName;
+    
+}
+
+function get_product_price($productCode) {
+    global $db;
+    $query = 'SELECT product_price FROM financial_products
+              WHERE product_code = :productCode';
+    $statement = $db->prepare($query);
+    $statement->bindValue(':productCode', $productCode);
+    $productPrice = $statement->execute();
+    $statement->closeCursor();
+    return $productPrice;
+}
 ?>
